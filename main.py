@@ -24,7 +24,7 @@ BULLET_FIRE_SOUND = pygame.mixer.Sound('Assets/Gun+Silencer.mp3')
 FPS = 60
 VEL = 5
 BULLET_VEL = 7
-MAX_BULLETS = 10
+MAX_BULLETS = 3
 SPACESHIP_WIDTH, SPACESHIP_HEIGHT = 55, 40
 
 YELLOW_HIT = pygame.USEREVENT + 1
@@ -98,7 +98,7 @@ def handle_bullets(yellow_bullets, red_bullets, yellow, red):
 
 def draw_winner(text):
     draw_text = WINNER_FONT.render(text, 1, WHITE)
-    WIN.blit(WINNER_FONT, (WIDTH/2 - draw_text.get_width()/2, HEIGHT/2 - draw_text.get_height()/2))
+    WIN.blit(draw_text, (WIDTH/2 - draw_text.get_width()/2, HEIGHT/2 - draw_text.get_height()/2))
     pygame.display.update()
     pygame.time.delay(5000)
 
@@ -127,7 +127,6 @@ def main():
                     yellow_bullets.append(bullet)
                     BULLET_FIRE_SOUND.play()
             
-            if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_KP_ENTER and len(red_bullets) < MAX_BULLETS:
                     bullet = pygame.Rect(red.x, red.y + red.height//2 - 2, 10, 5)
                     red_bullets.append(bullet)
